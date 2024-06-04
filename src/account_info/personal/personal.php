@@ -7,7 +7,7 @@ $stmt = $dbh->prepare("SELECT firstname, lastname, dateofbirth, postnumber, addr
 if($stmt) {
     $stmt->bindParam(":uuid", $uuid);
     $stmt->execute();
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);print_r($uuid);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -17,8 +17,10 @@ if($stmt) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>個人情報</title>
+    <link rel="stylesheet" href="../account_info.css">
 </head>
 <body>
+<?php include("../../header/header.php"); ?><div class="container"></div>
 <div class="tab">
     <div class="tab-link" data-tab="basic"><a href="../basic/basic" class="tab">基本情報</a></div>
     <div class="tab-link" data-tab="personal"><a href="../personal/personal" class="tab">個人情報</a></div>

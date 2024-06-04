@@ -6,6 +6,7 @@ body {
     cursor: pointer;
     padding: 10px;
     background-color: #f1f1f1;
+    margin-top: 24px;
 }
 .tab a{
     margin: 0 10px;
@@ -23,11 +24,7 @@ body {
     background-color: #bbb;
 }
 .tab-content {
-    display: none;
     padding: 20px;
     border: 1px solid #ccc;
     border-top: none;
-}
-.tab-content.active {
-    display: block;
 }

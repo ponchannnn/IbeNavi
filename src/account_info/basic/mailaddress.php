@@ -6,11 +6,11 @@
     <title>基本情報</title>
 </head>
 <body>
-
-<h2><a href="basic">基本情報</a>→ユーザ名</h2>
+<?php include("../../header/header.php"); ?><div class="container"></div>
+<h2><a href="basic">基本情報</a>→メールアドレス</h2>
 <form method="post" action="../save_account_info">
-    <label for="username" >ユーザ名:</label>
-    <input type="text" id="username" name="username">
+    <label for="email" >メールアドレス:</label>
+    <input type="email" id="email" name="email">
     <input type="submit" value="保存"><!-- script書く-->
 </form>
 

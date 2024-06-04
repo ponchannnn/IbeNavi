@@ -8,7 +8,7 @@
     </style>
 </head>
 <body>
-
+<?php include("../../header/header.php"); ?><div class="container"></div>
 <h2><a href="basic">基本情報</a>→パスワード</h2>
 <form method="post" action="../save_account_info">
     <label for="oldMailaddress" >現在のパスワード:</label>
