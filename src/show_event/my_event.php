@@ -4,11 +4,24 @@ $logged = new IsloggedIn();
 $dbh = $logged->getDbh();
 $uuid = $logged->getUuid();
 $accountid = $logged->getUserIdFromUuid($uuid);
-$stmt = $dbh->prepare("SELECT eventid, eventname, category, runtime, location FROM events WHERE accountid = :uuid ORDER BY created_at DESC, eventid ASC LIMIT 5 OFFSET 0");
-if($stmt) {
-    $stmt->bindParam(":uuid", $uuid);
-    $stmt->execute();
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// キーワード検索
+if(!isset($_GET["q"])) {
+    $stmt = $dbh->prepare("SELECT eventid, eventname, category, runtime, location FROM events WHERE accountid = :uuid ORDER BY created_at DESC, eventid ASC LIMIT 5 OFFSET 0");
+    if($stmt) {
+        $stmt->bindParam(":uuid", $uuid);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+} else {
+    $q = $_GET["q"];
+    $sql = "SELECT eventid, eventname, category, runtime, location FROM events WHERE accountid = :uuid AND eventname LIKE '%{$q}%' ORDER BY created_at DESC, eventid ASC LIMIT 5 OFFSET 0";
+    $stmt = $dbh->prepare($sql);
+    if($stmt) {
+        $stmt->bindParam(":uuid", $uuid);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -27,7 +40,7 @@ if($stmt) {
         </div>
         <div class="search-container">
             <form method="GET">
-                <input type="text" name="q" placeholder="キーワードを入力">
+                <input type="text" name="q" placeholder="キーワードを入力" value= <?php if(!empty($q)) echo $q; ?>>
                 <input type="submit" value="検索">
             </form>
             <div class="sort-container">

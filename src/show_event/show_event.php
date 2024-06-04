@@ -58,31 +58,6 @@ if($stmt) {
                 echo("<h2> イベントがありません </h2>");
                 exit();
             }
-                foreach($rows as $row) {
-                    $event_num += 1;
-                    $eventname = $row["eventname"];
-                    $category = $row["category"];
-                    $datetime = $row["runtime"];
-                    $location = $row["location"];
-                    $eventid = $row["eventid"];
-                    echo <<<EVENT
-                    <div class="event-container">
-                        <div class="event">
-                            <a href="/event_detail/event_prof?eventid={$eventid}"><h2>{$eventname}</h2></a>
-                            <p>開催日時: <span id="date-time">{$datetime}</span></p>
-                            <p>場所: <span id="location">{$location}</span></p>
-                            <p>カテゴリ: <span id="category">{$category}</span></p>
-                            <!-- 追加 -->
-                            <div class="like-switch">
-                                <label class="switch">
-                                    <input type="checkbox">
-                                    <span class="like-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    EVENT;
-                }
             ?>
             <!-- 無限スクロールで読み込む -->
             <!-- jQuery読み込み -->
