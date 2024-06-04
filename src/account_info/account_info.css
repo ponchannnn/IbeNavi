@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.tab{
+    display: flex;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f1f1f1;
+}
+.tab a{
+    margin: 0 10px;
+    padding: 10px;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: black;
+}
+.tab a:visited {
+   color: black;
+}
+
+.tab a:hover, .tab div.active{
+    background-color: #bbb;
+}
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+.tab-content.active {
+    display: block;
+}

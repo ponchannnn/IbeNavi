@@ -1,0 +1,14 @@
+metaデータ全部入れる
+送信ボタン挙動
+フォームファイルサイズ制限
+required監視
+べつｐｃで入ったときにセッションクリア
+users lastloginつくる
+acountstatusによってわける　
+pasuwasure
+idwasure
+イベントの最大数
+
+formアップデート
+通知
+Micromodal.js

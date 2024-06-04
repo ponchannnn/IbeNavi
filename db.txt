@@ -1,0 +1,60 @@
+-- ユーザー情報テーブル
+CREATE TABLE users (
+    id UUID PRIMARY KEY NOT NULL DEFAULT gen_random_uuid(),
+	userid  VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL ,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(40) NOT NULL UNIQUE,
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    lastlogin TIMESTAMP NULL,
+    accountstatus VARCHAR(20) DEFAULT 'active'
+);
+
+-- プロフィール情報テーブル
+CREATE TABLE userprofile (
+    id UUID PRIMARY KEY NOT NULL,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    dateofbirth DATE,
+	postnumber VARCHAR(10),
+    Address VARCHAR(255),
+    phonenumber VARCHAR(20),
+    profileimage VARCHAR(127),
+    FOREIGN KEY (ID) REFERENCES Users(ID) ON DELETE CASCADE
+);
+
+-- 権限情報テーブル
+CREATE TABLE userroles (
+    id uuid PRIMARY KEY NOT NULL,
+    roleid INT NOT NULL,
+    FOREIGN KEY (ID) REFERENCES Users(ID) ON DELETE CASCADE
+);
+
+-- セッション情報テーブル
+CREATE TABLE sessions (
+    sessionid VARCHAR(60) PRIMARY KEY,
+    id uuid NOT NULL,
+    sessiontoken VARCHAR(255) NOT NULL,
+    expirationdate TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (ID) REFERENCES Users(ID) ON DELETE CASCADE
+);
+
+CREATE TABLE events (
+    eventid SERIAL PRIMARY KEY NOT NULL,
+    accountid UUID NOT NULL,
+    eventname VARCHAR(20) NOT NULL,
+    category VARCHAR(10) NOT NULL,
+    tags VARCHAR(40),
+    runtime TIMESTAMP NOT NULL,
+    location VARCHAR(100) NOT NULL,
+    description VARCHAR(4000) NOT NULL,
+    email VARCHAR(40) NOT NULL,
+    phonenumber VARCHAR(20) NOT NULL,
+    imagepass VARCHAR(80)
+);
+
+CREATE TABLE events (
+    id uuid PRIMARY KEY NOT NULL,
+    subscribe_uuid uuid[] 
+);
