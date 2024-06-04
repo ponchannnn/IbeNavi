@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/header/header.css">
 <div class="header">
-        <img src="/header/blob.png" alt="Logo">
+        <a href="/show_event/show_event"><img src="/header/blob.png" alt="Logo"></a>
         <div class="nav">
             <a href="#basic-info">基本情報</a>
             <a href="#personal-info">個人情報</a>
