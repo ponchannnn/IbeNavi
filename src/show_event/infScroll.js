@@ -98,9 +98,13 @@ $(window).on("scroll", function() {
                         <a href='event_contents.php?count=${data[data.length - 1]["count"]}}'></a>
                         <div class="event-container">
                             <div class="event">
-                                <form  action="../event_form/update_event" method="post">
+                                <form  action="../event_form/update_event" method="GET">
                                     <input type="hidden" name="eventid" value="${data[i]["eventid"]}" />
                                     <input type="submit" value="編集" />
+                                </form>
+                                <form  action="../event_form/delete_event" method="GET">
+                                    <input type="hidden" name="eventid" value="${data[i]["eventid"]}" />
+                                    <input type="submit" value="削除" />
                                 </form>
                                 <a href="/event_detail/event_prof?eventid=${data[i]["eventid"]}"><h2>${data[i]["eventname"]}</h2></a>
                                 <p>開催日時: <span id="date-time">${data[i]["runtime"]}</span></p>

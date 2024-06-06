@@ -1,17 +1,17 @@
 <?php
-if (empty($_POST["eventid"])) {
+if (empty($_GET["eventid"])) {
     header("Location: input_event");
     exit();
 }
-$post_eventid = $_POST["eventid"];
+$get_eventid = $_GET["eventid"];
 require_once(dirname(__FILE__)."/../IsLoggedIn.php");
-$logged = new IsLoggedIn();   // 主催者だけができるようにする
+$logged = new IsLoggedIn();
 $logged->setOriginalUrl("/show_event/my_event");
 $dbh = $logged->getDbh();
 $uuid = $logged->getUuid();
 $stmt = $dbh->prepare("SELECT * FROM events WHERE eventid = :eventid");
 if($stmt) {
-    $stmt->bindParam(":eventid", $post_eventid);
+    $stmt->bindParam(":eventid", $get_eventid);
     $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 }
