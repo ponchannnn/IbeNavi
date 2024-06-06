@@ -1,4 +1,10 @@
 var loadingFlg = false;
+$(window).on("load", function () {
+    loadingFlg = true;
+    if (typeof accountId === "undefined") ajax_add_content_for_show();
+    else ajax_add_content_for_my(accountId);
+})
+
 $(window).on("scroll", function() {
     // 読込処理中ではないか判定
     if (!loadingFlg) {
@@ -28,11 +34,13 @@ $(window).on("scroll", function() {
         url: "event_contents",
         data:{ count : count }
         })
-        .done(function(data){console.log(count);console.log(data);
+        .done(function(data){
             $('#loading .loading').remove();
             // データがない場合終わる
-            if (data.length == 1) count = -1;
-            else {
+            if (data.length == 1) {
+                if (count == 0) $(".event-container").append("<h2> イベントがありません </h2>");
+                count = -1;
+            } else {
                 // コンテンツ生成(count排除)
                 for (let i = 0; i < data.length - 1; i++) {
                     $("#infinite-content").append(`
@@ -54,9 +62,9 @@ $(window).on("scroll", function() {
                             </div>`
                     )
                 }
+                count = parseInt(count) + data.length - 1;
             }
             // 取得件数を加算してセット
-            count = parseInt(count) + data.length - 1;
             $("#count").val(count);
             loadingFlg = false;
         }).fail(function(e){
@@ -79,8 +87,10 @@ $(window).on("scroll", function() {
         .done(function(data){
             $('#loading .loading').remove();
             // データがない場合終わる
-            if (data.length == 1) count = -1;
-            else {
+            if (data.length == 1) {
+                if (count == 0) $(".event-container").append("<h2> イベントがありません </h2>");
+                count = -1;
+            } else {
                 // コンテンツ生成(count排除)
                 for (let i = 0; i < data.length - 1; i++) {
                     $("#infinite-content").append(`
@@ -106,9 +116,9 @@ $(window).on("scroll", function() {
                             </div>`
                     )
                 }
+                count = parseInt(count) + data.length - 1;
             }
             // 取得件数を加算してセット
-            count = parseInt(count) + data.length - 1;
             $("#count").val(count);
             loadingFlg = false;
         }).fail(function(e){

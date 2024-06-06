@@ -12,3 +12,6 @@ idwasure
 formアップデート
 通知
 Micromodal.js
+
+やったこと
+showevent myeventの速度向上
