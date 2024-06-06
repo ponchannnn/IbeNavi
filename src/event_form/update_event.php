@@ -6,6 +6,10 @@ if (empty($_GET["eventid"])) {
 $get_eventid = $_GET["eventid"];
 require_once(dirname(__FILE__)."/../IsLoggedIn.php");
 $logged = new IsLoggedIn();
+if (!$logged->isOrganizer()) {  
+    header("Location: /not_organizer_account");
+    exit();
+};
 $logged->setOriginalUrl("/show_event/my_event");
 $dbh = $logged->getDbh();
 $uuid = $logged->getUuid();

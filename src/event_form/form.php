@@ -1,6 +1,10 @@
 <?php
 require_once(dirname(__FILE__)."/../IsLoggedIn.php");
-new IsLoggedIn();   // 主催者だけができるようにする
+$logged = new IsLoggedIn();
+if (!$logged->isOrganizer()) {  
+    header("Location: /not_organizer_account");
+    exit();
+};
 ?>
 
 <!DOCTYPE html>

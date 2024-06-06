@@ -5,6 +5,7 @@ class IsLoggedIn extends GetDB {
     private $uuid;
     private $original_url;
     private $logged_flag = false;
+    private $roleid;
 
     function __construct () {
         parent::__construct();
@@ -25,6 +26,22 @@ class IsLoggedIn extends GetDB {
         if (!$this->logged_flag) $this->check_logged_in();
         return parent::getUserIdFromUuid($this->getUuid());
     }
+
+    function isParticipant() {
+        if (!isset($this->roleid)) $this->roleid = parent::getRoleId($this->getUuid());
+        return $this->roleid == 1;
+    }
+
+    function isOrganizer() {
+        if (!isset($this->roleid)) $this->roleid = parent::getRoleId($this->getUuid());
+        return $this->roleid == 2;
+    }
+
+    function isAdmin() {
+        if (!isset($this->roleid)) $this->roleid = parent::getRoleId($this->getUuid());
+        return $this->roleid == 3;
+    }
+
     function setOriginalUrl ($original_url) {
         $this->original_url = $original_url;
         return $this;
@@ -43,8 +60,10 @@ class IsLoggedIn extends GetDB {
             if ($row) $this->uuid = $row["id"];
             else {
                 if (isset($this->original_url)) {
-                    header("Location: /../../login/login?original_url={$this->original_url}");
-                    exit();
+                    if ($this->original_url != "/account_info/others/delete_account?accept=削除") {
+                        header("Location: /../../login/login?original_url={$this->original_url}");
+                        exit();
+                    } else header("Location: /../../login/login");
                 } else header("Location: /../../login/login");
             }
         }

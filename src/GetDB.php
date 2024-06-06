@@ -65,5 +65,30 @@ class GetDB {
             return $row["id"];
         } return null;
     }
+
+    function getRoleId ($id) {
+        $stmt = $this->dbh->prepare("SELECT roleid FROM userroles WHERE id = :id");
+        if($stmt) {
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return strval($row["roleid"]);
+        } return null;
+    }
+
+    function isParticipantFromUuid ($id) {
+        $roleid = $this->getRoleId($id);
+        return $roleid == 1;
+    }
+
+    function isOrganizerFromUuid ($id) {
+        $roleid = $this->getRoleId($id);
+        return $roleid == 2;
+    }
+
+    function isAdminFromUuid ($id) {
+        $roleid = $this->getRoleId($id);
+        return $roleid == 3;
+    }
 }
 ?>

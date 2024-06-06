@@ -1,6 +1,10 @@
 <?php
 require_once(dirname(__FILE__)."/../IsLoggedIn.php");
 $is_logged = new IsLoggedIn();
+if (!$logged->isOrganizer()) {  
+    header("Location: /not_organizer_account");
+    exit();
+};
 $dbh = $is_logged->getDbh();
 $uuid= $is_logged->getUuid();
 $subbed_url = explode("/", $_SERVER['HTTP_REFERER']);

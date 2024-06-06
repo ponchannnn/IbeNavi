@@ -3,13 +3,18 @@ require_once(dirname(__FILE__)."/../../IsLoggedIn.php");
 $logged = new IsLoggedIn();
 $dbh = $logged->getDbh();
 $uuid = $logged->getUuid();
+$subbed_url = explode("/", $_SERVER['HTTP_REFERER']);
+$original_url = end($subbed_url);
+if ($original_url != "confirm_delete_account") {
+    header("Location: /show_event/show_event");
+    exit();
+}
 
 // アカウント削除
 $stmt = $dbh->prepare("DELETE FROM users WHERE id = :uuid");
 if($stmt) {
     $stmt->bindParam(":uuid", $uuid);
     $stmt->execute();
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -23,6 +28,5 @@ if($stmt) {
 <body>
     <?php include("../../header/header.php"); ?>
     <h1 class="container">アカウントを削除しました</h1>
-    <div><?php print_r($row) ?></div>
 </body>
 </html>

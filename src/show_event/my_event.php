@@ -3,6 +3,10 @@ require_once(dirname(__FILE__).'/../IsLoggedIn.php');
 $logged = new IsloggedIn();
 $dbh = $logged->getDbh();
 $uuid = $logged->getUuid();
+if (!$logged->isOrganizer()) {  
+    header("Location: /not_organizer_account");
+    exit();
+};
 $accountid = $logged->getUserIdFromUuid($uuid);
 $event_num = 0;
 // キーワード検索
