@@ -23,7 +23,8 @@ try{
         require_once(dirname(__FILE__).'/../MakeSession.php');
         new MakeSession($result["id"]);
         $dbh = null; // db切断
-        header("Location: {$_GET["original_url"]}"); //ホームページ
+        $url = isset($_GET["original_url"])? $_GET["original_url"]: "/show_event/show_event";
+        header("Location: {$url}"); //ホームページ
         exit();
     }
 }catch (PDOException $e){

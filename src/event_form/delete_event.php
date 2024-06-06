@@ -28,7 +28,6 @@ $stmt = $dbh->prepare("DELETE FROM events WHERE eventid = :eventid");
 if($stmt) {
     $stmt->bindParam(":eventid", $get_eventid);
     $stmt->execute();
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 ?>
 

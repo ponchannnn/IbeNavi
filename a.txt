@@ -14,5 +14,6 @@ formアップデート
 Micromodal.js
 
 やったこと
-showevent myeventの速度向上
-form削除ボタン追加
+showevent myeventの速度向上:30ぷん
+form削除ボタン追加:30ふん
+account削除:1時間

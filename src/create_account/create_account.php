@@ -6,8 +6,9 @@
     <title>会員登録</title>
 </head>
 <body>
+    <?php include("../header/header.php"); ?><div class="container"></div>
     <h1>会員登録</h1>
-    <form method="post" action="set_account.php">
+    <form method="post" action="set_account">
         <input type="radio" name="account_roles" id="participant" value="1">
         <label for="participant">参加者</label>
 		<input type="radio" name="account_roles" id="organizer" value="2">

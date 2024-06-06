@@ -21,6 +21,10 @@ class IsLoggedIn extends GetDB {
         return $this->uuid;
     }
 
+    function getUserId () {
+        if (!$this->logged_flag) $this->check_logged_in();
+        return parent::getUserIdFromUuid($this->getUuid());
+    }
     function setOriginalUrl ($original_url) {
         $this->original_url = $original_url;
         return $this;

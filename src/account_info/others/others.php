@@ -17,10 +17,8 @@
     </div>
 
 <div id="basic" class="tab-content">
-    <h2>基本情報</h2>
-    <a href="username.html">ユーザ名</a><br><br>
-    <a href="mailaddress.html">メールアドレス:</a><br><br>
-    <a href="password.html">パスワード:</a><br><br>
+    <h2>その他</h2>
+    <a href="confirm_delete_account">アカウント削除</a><br><br>
 </div>
 </body>
 </html>

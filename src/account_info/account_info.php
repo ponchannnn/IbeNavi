@@ -7,26 +7,17 @@
     <link rel="stylesheet" href="account_info.css">
 </head>
 <body>
-
-<div class="tab">
-    <div class="tab-link" data-tab="basic"><a href="basic/basic.php" class="tab">基本情報</a></div>
-    <div class="tab-link" data-tab="personal"><a href="personal/personal.php" class="tab">個人情報</a></div>
-    <div class="tab-link" data-tab="security"><a href="security/security.php" class="tab">セキュリティとプライバシー設定</a></div>
-    <div class="tab-link" data-tab="support"><a href="support/support.html" class="tab">サポート</a></div>
-    <div class="tab-link" data-tab="others"><a href="others/others.html" class="tab">その他</a></div>
-</div>
-
-<script>
-    document.querySelectorAll('.tab-link').forEach(link => {
-        link.addEventListener('click', () => {
-            document.querySelectorAll('.tab-link').forEach(item => item.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-
-            link.classList.add('active');
-            document.getElementById(link.dataset.tab).classList.add('active');
-        });
-    });
-</script>
-
+    <?php include("../header/header.php"); ?><div class="container"></div>
+    <div class="tab">
+        <div class="tab-link" data-tab="basic"><a href="basic/basic" class="tab">基本情報</a></div>
+        <div class="tab-link" data-tab="personal"><a href="personal/personal" class="tab">個人情報</a></div>
+        <div class="tab-link" data-tab="security"><a href="security/security" class="tab">セキュリティとプライバシー設定</a></div>
+        <div class="tab-link" data-tab="support"><a href="support/support" class="tab">サポート</a></div>
+        <div class="tab-link" data-tab="others"><a href="others/others" class="tab">その他</a></div>
+    </div>
+    <div>
+        <h2>アカウント情報を変更することができます。</h2>
+        <h2>上部のタブを開いて設定変更してください。</h2>
+    </div>
 </body>
 </html>
