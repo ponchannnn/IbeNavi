@@ -5,6 +5,7 @@ class IsLoggedIn extends GetDB {
     private $uuid;
     private $original_url;
     private $logged_flag = false;
+    private $logged;
     private $roleid;
 
     function __construct () {
@@ -13,17 +14,17 @@ class IsLoggedIn extends GetDB {
     }
 
     function getDbh () {
-        if (!$this->logged_flag) $this->check_logged_in();
+        $this->check_logged_in();
         return $this->dbh;
     }
 
     function getUuid () {
-        if (!$this->logged_flag) $this->check_logged_in();
+        $this->check_logged_in();
         return $this->uuid;
     }
 
     function getUserId () {
-        if (!$this->logged_flag) $this->check_logged_in();
+        $this->check_logged_in();
         return parent::getUserIdFromUuid($this->getUuid());
     }
 
@@ -48,6 +49,7 @@ class IsLoggedIn extends GetDB {
     }
 
     function check_logged_in () {
+        if ($this->logged_flag) return;
         $this->logged_flag = true;
         $uuid;
         $this->dbh = parent::getDbh();
@@ -57,14 +59,41 @@ class IsLoggedIn extends GetDB {
             $stmt->bindParam(":sessionid", $sid);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($row) $this->uuid = $row["id"];
+            if ($row) {
+                $this->uuid = $row["id"];
+                $this->logged = true;
+            }
             else {
+                $this->logged = false;
                 if (isset($this->original_url)) {
                     if ($this->original_url != "/account_info/others/delete_account?accept=削除") {
                         header("Location: /../../login/login?original_url={$this->original_url}");
                         exit();
                     } else header("Location: /../../login/login");
                 } else header("Location: /../../login/login");
+            }
+        }
+    }
+
+    function is_logged_in () {
+        if ($this->logged_flag) return $this->logged;
+        $this->logged_flag = true;
+        $uuid;
+        $this->dbh = parent::getDbh();
+        $stmt = $this->dbh->prepare("SELECT id FROM sessions WHERE sessionid = :sessionid");
+        if ($stmt) {
+            $sid = $_COOKIE["PHPSESSID"];    // 参照渡しエラーのため
+            $stmt->bindParam(":sessionid", $sid);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($row) {
+                $this->uuid = $row["id"];
+                $this->logged = true;
+                return true;
+            }
+            else {
+                $this->logged = false;
+                return false;
             }
         }
     }
