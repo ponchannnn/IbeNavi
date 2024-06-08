@@ -26,22 +26,7 @@ $username = $db->getUsernameFromUserId($channel_id);
     <link rel="stylesheet" href="home.css">
 </head>
 <body>
-    <div class="header">
-        <img src="../blob.png" alt="Logo">
-        <div class="nav">
-            <a href="#basic-info">基本情報</a>
-            <a href="#personal-info">個人情報</a>
-            <a href="#security-privacy">セキュリティとプライバシー</a>
-            <a href="#support">サポート</a>
-            <a href="#others">その他</a>
-        </div>
-        <div class="search-container">
-            <form action="" method="GET">
-                <input type="text" placeholder="キーワードを入力">
-                <input type="submit" value="検索">
-            </form>
-        </div>
-    </div>
+    <?php include("../header/header.php"); ?><div class="container"></div>
     <div class="container">
         <div class="title-container">
             <h1><a href="#"><?php echo $username ?>のイベント</a></h1>

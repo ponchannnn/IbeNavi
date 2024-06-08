@@ -6,7 +6,8 @@
     <title>アカウント情報</title>
 </head>
 <body>
-    <div>
+    <?php include("../header/header.php"); ?>
+    <div class="container">
         <p>イベナビ<!-- 後々ロゴにする --></p>
     </div>
 <div class="tab">

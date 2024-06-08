@@ -40,7 +40,7 @@ if($stmt) {
     <title>イベント情報</title>
 </head>
 <body>
-
+<?php include("../header/header.php"); ?><div class="container"></div>
 <div class="event-container">
     <div class="event-header">
         <div>
