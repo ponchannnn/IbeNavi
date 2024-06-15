@@ -50,6 +50,10 @@ class IsLoggedIn extends GetDB {
 
     function check_logged_in () {
         if ($this->logged_flag) return;
+        if (!isset($_COOKIE["PHPSESSID"])) {
+            $this->logged = false;
+            return header("Location: /../../login/login");
+        }
         $this->logged_flag = true;
         $uuid;
         $this->dbh = parent::getDbh();
@@ -77,6 +81,10 @@ class IsLoggedIn extends GetDB {
 
     function is_logged_in () {
         if ($this->logged_flag) return $this->logged;
+        if (!isset($_COOKIE["PHPSESSID"])) {
+            $this->logged = false;
+            return false;
+        }
         $this->logged_flag = true;
         $uuid;
         $this->dbh = parent::getDbh();

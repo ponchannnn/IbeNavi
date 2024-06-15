@@ -6,6 +6,8 @@ if(!property_exists('IsloggedIn', 'logged_flag')) {
 $is_logged_in = $logged->is_logged_in();
 ?>
 <link rel="stylesheet" href="/header/header.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/header/header.js"></script>
 <div class="header">
         <a href="/show_event/show_event"><img src="/header/blob.png" alt="Logo"></a>
         <div class="nav">
@@ -31,6 +33,7 @@ $is_logged_in = $logged->is_logged_in();
                     EOF;
                 } else {    // ログアウト中
                     echo <<< EOF
+                    <a href='/create_account/create_account'>サインイン</a>
                     <a href='/login/login'>ログイン</a>
                     EOF;
                 }

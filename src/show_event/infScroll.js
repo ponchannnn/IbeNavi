@@ -34,7 +34,7 @@ $(window).on("scroll", function() {
         url: "event_contents",
         data:{ count : count }
         })
-        .done(function(data){
+        .done(function(data){console.log(data);
             $('#loading .loading').remove();
             // データがない場合終わる
             if (data.length == 1) {

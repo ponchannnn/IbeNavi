@@ -72,7 +72,7 @@ class GetDB {
             $stmt->bindParam(":id", $id);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            return strval($row["roleid"]);
+            return $row["roleid"];
         } return null;
     }
 

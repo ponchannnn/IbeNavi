@@ -35,6 +35,8 @@ if(!isset($_GET["q"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>イベント検索</title>
     <link rel="stylesheet" href="home.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="sort.js"></script>
 </head>
 <body>
     <?php include("../header/header.php"); ?>
@@ -50,8 +52,8 @@ if(!isset($_GET["q"])) {
             <div class="sort-container">
                 <label for="sort">ソート：</label>
                 <select name="sort" id="sort">
-                    <option value="date">開催日時でソート</option>
-                    <option value="location">場所でソート</option>
+                    <option value="run_date">開催日時</option>
+                    <option value="created_date">作成日時</option>
                     <!-- 他のソートオプションを追加 -->
                 </select>
             </div>
@@ -59,7 +61,6 @@ if(!isset($_GET["q"])) {
         <div class="event-container">
             <!-- 無限スクロールで読み込む -->
             <!-- jQuery読み込み -->
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script type="text/javascript">accountId = "<?php echo $accountid; ?>"</script>
             <script type="text/javascript" src="infScroll.js"></script>
             <div id="infinite-content"></div>

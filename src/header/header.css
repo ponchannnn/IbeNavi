@@ -8,10 +8,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: background-color 0.3s, padding 0.3s;
 }
 .header img {
     margin-left: 20px;
     height: 40px;
+    transition: height 0.3s;
 }
 .nav {
     display: flex;
@@ -69,3 +71,11 @@ body {
     padding: 20px;
 }
 
+.header.scrolled {
+    background-color: rgb(113, 113, 113);
+    padding: 5px 0;
+}
+
+.header.scrolled img {
+    height: 30px;
+}
