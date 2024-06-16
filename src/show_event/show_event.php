@@ -27,6 +27,7 @@ if(!isset($_GET["q"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>イベント検索</title>
     <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" type="text/css" href="loading.css">
 </head>
 <body>
     <?php include("../header/header.php"); ?>
@@ -49,14 +50,21 @@ if(!isset($_GET["q"])) {
             </div>
         </div>
         <div class="event-container">
-            <!-- 無限スクロールで読み込む -->
-            <!-- jQuery読み込み -->
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script type="text/javascript" src="infScroll.js"></script>
-            <div id="infinite-content"></div>
+            <div id="splash">
+                <div id="splash_text"></div>
+            <!--/splash--></div>
+            <div id="container">
+                <div id="infinite-content"></div>
+                 <!-- 無限スクロールで読み込む -->
+                <!-- jQuery読み込み -->
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script type="text/javascript" src="infScroll.js"></script>
+                <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+                <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.min.js"></script>
+                <script type="text/javascript" src="loading.js"></script>
                 <!-- 追加ここまで -->
+            <!--/container--></div>
             <input type="hidden" id="count" value=<?php echo $event_num ?>>
-            <div id ="loading"></div>
         </div>
     </div>
 </body>

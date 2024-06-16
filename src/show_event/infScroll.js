@@ -22,6 +22,13 @@ $(window).on("scroll", function() {
 });
 
 $("#sort").on("change", () => {
+    //アニメーションスタート
+    bar.stop();
+    bar.set(0);
+    $("#splash").removeAttr("style");
+    bar.animate(1, function () {//バーを描画する割合を指定します 1.0 なら100%まで描画します
+        $("#splash").delay(500).fadeOut(800);//アニメーションが終わったら#splashエリアをフェードアウト
+    });  
     $('#infinite-content').empty();
     $("#count").val(0);
     loadingFlg = true;
