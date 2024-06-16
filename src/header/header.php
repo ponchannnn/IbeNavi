@@ -29,12 +29,12 @@ $is_logged_in = $logged->is_logged_in();
                 <?php
                 if ($is_logged_in){ // ログイン中
                     echo <<< EOF
-                    <a href='/logout/logout'>ログアウト</a>
+                    <button><a href='/logout/logout'>ログアウト</a></button>
                     EOF;
                 } else {    // ログアウト中
                     echo <<< EOF
-                    <a href='/create_account/create_account'>サインイン</a>
-                    <a href='/login/login'>ログイン</a>
+                    <button><a href='/create_account/create_account'>サインイン</a></button>
+                    <button><a href='/login/login'>ログイン</a></button>
                     EOF;
                 }
                 ?>

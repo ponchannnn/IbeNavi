@@ -52,9 +52,26 @@ CREATE TABLE events (
     email VARCHAR(40) NOT NULL,
     phonenumber VARCHAR(20) NOT NULL,
     imagepass VARCHAR(80),
-    created_at TIMESTAMP WITHOUT ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     event_status VARCHAR(10) NOT NULL DEFAULT 'active'
 );
+
+-- 順番キモイ
+    CREATE TABLE events (
+        category VARCHAR(10) NOT NULL,
+        tags VARCHAR(40),
+        runtime TIMESTAMP NOT NULL,
+        location VARCHAR(100) NOT NULL,
+        description VARCHAR(4000) NOT NULL,
+        email VARCHAR(40) NOT NULL,
+        phonenumber VARCHAR(20) NOT NULL,
+        imagepass VARCHAR(80),
+        accountid UUID NOT NULL,
+        eventid SERIAL PRIMARY KEY NOT NULL,
+        created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        eventname VARCHAR(20) NOT NULL,
+        event_status VARCHAR(10) NOT NULL DEFAULT 'active'
+    );
 
 CREATE TABLE user_subscriber (
     id uuid PRIMARY KEY NOT NULL,

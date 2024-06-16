@@ -7,23 +7,32 @@ $(window).on("load", function () {
 
 $(window).on("scroll", function() {
     // 読込処理中ではないか判定
-    if (!loadingFlg) {
-        // 画面に見えている最上部の座標 = [bodyの高さ] - [windowの高さ]
-        var bottomPoint = document.body.clientHeight - window.innerHeight;
-        // スクロール量を取得
-        var currentPos = window.scrollY;
-        // スクロール量が最下部の位置を過ぎたか判定
-        if (bottomPoint-300 <= currentPos) {
-            if ($("#count").val() == -1) return;
-            loadingFlg = true;
-            if (typeof accountId === "undefined") ajax_add_content_for_show();
-            else ajax_add_content_for_my(accountId);
-        }
+    if (loadingFlg) return;
+    // 画面に見えている最上部の座標 = [bodyの高さ] - [windowの高さ]
+    var bottomPoint = document.body.clientHeight - window.innerHeight;
+    // スクロール量を取得
+    var currentPos = window.scrollY;
+    // スクロール量が最下部の位置を過ぎたか判定
+    if (bottomPoint-300 <= currentPos) {
+        if ($("#count").val() == -1) return;
+        loadingFlg = true;
+        if (typeof accountId === "undefined") ajax_add_content_for_show();
+        else ajax_add_content_for_my(accountId);
     }
 });
 
+$("#sort").on("change", () => {
+    $('#infinite-content').empty();
+    $("#count").val(0);
+    loadingFlg = true;
+    if (typeof accountId === "undefined") ajax_add_content_for_show();
+    else ajax_add_content_for_my(accountId);
+})
+
     // ajaxコンテンツ追加処理
     function ajax_add_content_for_show() {
+        let sort = $("#sort option:selected").val();
+        sort? null: sort = "run_date";
         let count = $("#count").val();
         // コンテンツ件数
         $("#loading").append(`<div class="loading">読込中...</div>`);
@@ -32,8 +41,9 @@ $(window).on("scroll", function() {
         type: "POST",
         datatype: "json",
         url: "event_contents",
-        data:{ count : count }
-        })
+        data:{ count : count,
+            sort : sort
+        }})
         .done(function(data){console.log(data);
             $('#loading .loading').remove();
             // データがない場合終わる
@@ -82,7 +92,8 @@ $(window).on("scroll", function() {
         datatype: "json",
         url: "event_contents",
         data:{ count : count,
-            accountId : accountId
+            accountId : accountId,
+            sort : sort
         }})
         .done(function(data){
             $('#loading .loading').remove();

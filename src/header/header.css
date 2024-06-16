@@ -79,3 +79,12 @@ body {
 .header.scrolled img {
     height: 30px;
 }
+
+.header a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.header a:visited{
+    color: inherit;
+}

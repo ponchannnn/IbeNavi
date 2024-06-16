@@ -42,8 +42,8 @@ if(!isset($_GET["q"])) {
             <div class="sort-container">
                 <label for="sort">ソート：</label>
                 <select name="sort" id="sort">
-                    <option value="date">開催日時</option>
-                    <option value="location">場所</option>
+                    <option value="run_date">開催日時</option>
+                    <option value="created_date">作成日時</option>
                     <!-- 他のソートオプションを追加 -->
                 </select>
             </div>
