@@ -24,7 +24,7 @@ if (!$row) {
 }
 
 // イベント削除
-$stmt = $dbh->prepare("UPDATE events SET eventstatus = 'deleted'WHERE eventid = :eventid");
+$stmt = $dbh->prepare("UPDATE events SET event_status = 'deleted' WHERE eventid = :eventid");
 if($stmt) {
     $stmt->bindParam(":eventid", $get_eventid);
     $stmt->execute();

@@ -11,7 +11,7 @@ if ($original_url != "confirm_delete_account") {
 }
 
 // アカウント削除
-$stmt = $dbh->prepare("DELETE FROM users WHERE id = :uuid");
+$stmt = $dbh->prepare("UPDATE users SET accountstatus = 'deleted' WHERE id = :uuid");
 if($stmt) {
     $stmt->bindParam(":uuid", $uuid);
     $stmt->execute();
