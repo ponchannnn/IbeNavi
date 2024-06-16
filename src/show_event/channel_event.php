@@ -4,18 +4,19 @@ if (!isset($_GET["channel_id"])) {
     exit();
 }
 $channel_id = $_GET["channel_id"];
-require_once(dirname(__FILE__).'/../GetDB.php');
+require_once(dirname(__FILE__).'/../IsLoggedIn.php');
 $uuid;
-$db = new GetDB();
-$dbh = $db->getDbh();
-$eventAuthorUuid = $db->getUuidFromUserId($channel_id);
+$logged = new IsLoggedIn();
+$dbh = $logged->getDbh();
+$event_num = 0;
+$eventAuthorUuid = $logged->getUuidFromUserId($channel_id);
 $stmt = $dbh->prepare("SELECT eventid, eventname, category, runtime, location FROM events WHERE accountid = :id ORDER BY created_at DESC LIMIT 5 OFFSET 0");
 if($stmt) {
     $stmt->bindParam(":id", $eventAuthorUuid);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-$username = $db->getUsernameFromUserId($channel_id);
+$username = $logged->getUsernameFromUserId($channel_id);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -30,6 +31,7 @@ $username = $db->getUsernameFromUserId($channel_id);
     <div class="container">
         <div class="title-container">
             <h1><a href="#"><?php echo $username ?>のイベント</a></h1>
+            <?php if($logged->is_logged_in()) echo "<button><a href='/show_event/subscribe?id={$channel_id}'>チャンネル登録</a></button>" ?>
         </div>
         <div class="search-container">
             <form action="" method="GET">
@@ -48,6 +50,7 @@ $username = $db->getUsernameFromUserId($channel_id);
         <div class="event-container">
             <!-- 無限スクロールで読み込む -->
             <!-- jQuery読み込み -->
+            <script type="text/javascript">accountId = "<?php echo $channel_id; ?>"</script>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script type="text/javascript" src="infScroll.js"></script>
             <div id="infinite-content"></div>

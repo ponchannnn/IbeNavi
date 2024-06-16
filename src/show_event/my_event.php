@@ -35,8 +35,6 @@ if(!isset($_GET["q"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>イベント検索</title>
     <link rel="stylesheet" href="home.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="sort.js"></script>
 </head>
 <body>
     <?php include("../header/header.php"); ?>
@@ -62,6 +60,7 @@ if(!isset($_GET["q"])) {
             <!-- 無限スクロールで読み込む -->
             <!-- jQuery読み込み -->
             <script type="text/javascript">accountId = "<?php echo $accountid; ?>"</script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script type="text/javascript" src="infScroll.js"></script>
             <div id="infinite-content"></div>
                 <!-- 追加ここまで -->

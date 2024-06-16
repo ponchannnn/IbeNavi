@@ -23,12 +23,14 @@ $(window).on("scroll", function() {
 
 $("#sort").on("change", () => {
     //アニメーションスタート
-    bar.stop();
-    bar.set(0);
-    $("#splash").removeAttr("style");
-    bar.animate(1, function () {//バーを描画する割合を指定します 1.0 なら100%まで描画します
-        $("#splash").delay(500).fadeOut(800);//アニメーションが終わったら#splashエリアをフェードアウト
-    });  
+    if (bar) {
+        bar.stop();
+        bar.set(0);
+        $("#splash").removeAttr("style");
+        bar.animate(1, function () {//バーを描画する割合を指定します 1.0 なら100%まで描画します
+            $("#splash").delay(500).fadeOut(800);//アニメーションが終わったら#splashエリアをフェードアウト
+        });
+    }
     $('#infinite-content').empty();
     $("#count").val(0);
     loadingFlg = true;
@@ -90,6 +92,8 @@ $("#sort").on("change", () => {
     }
 
     function ajax_add_content_for_my(accountId) {
+        let sort = $("#sort option:selected").val();
+        sort? null: sort = "run_date";
         let count = $("#count").val();
         // コンテンツ件数
         $("#loading").append(`<div class="loading">読込中...</div>`);
