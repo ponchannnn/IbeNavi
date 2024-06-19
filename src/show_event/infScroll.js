@@ -63,7 +63,7 @@ $("#sort").on("change", () => {
                 // コンテンツ生成(count排除)
                 for (let i = 0; i < data.length - 1; i++) {
                     $("#infinite-content").append(`
-                        <div class="event">
+                        <div class="event" name="${data[i]["eventid"]}">
                             <a href="/event_detail/event_prof?eventid=${data[i]["eventid"]}"><h2>${data[i]["eventname"]}</h2></a>
                             <p>開催日時: <span id="date-time">${data[i]["runtime"]}</span></p>
                             <p>場所: <span id="location">${data[i]["location"]}</span></p>
@@ -114,7 +114,7 @@ $("#sort").on("change", () => {
                     $("#infinite-content").append(`
                     <div class='loaded-contents'>
                         <div class="event-container">
-                            <div class="event">
+                            <div class="event" name="${data[i]["eventid"]}">
                                 <form  action="../event_form/update_event" method="GET">
                                     <input type="hidden" name="eventid" value="${data[i]["eventid"]}" />
                                     <input type="submit" value="編集" />

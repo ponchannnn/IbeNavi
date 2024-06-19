@@ -23,7 +23,7 @@ if($stmt) {
     } else {   // false
         $stmt = $dbh->prepare("INSERT INTO user_subscriber (id, subscribe_uuid) VALUES (:id, :sub_id)");
         $stmt->bindParam(":id", $uuid);
-        $subid_append = "CAST({'" . $sub_id . "'} AS UUID[])";
+        $subid_append = "CAST('{" . $sub_id . "}' AS UUID[])";
         $stmt->bindParam(":sub_id", $subid_append);
         if($stmt) {
             $row = $stmt->execute();

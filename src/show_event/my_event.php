@@ -62,6 +62,7 @@ if(!isset($_GET["q"])) {
             <script type="text/javascript">accountId = "<?php echo $accountid; ?>"</script>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script type="text/javascript" src="infScroll.js"></script>
+            <script type="text/javascript" src="toggleEventHidden.js"></script>
             <div id="infinite-content"></div>
                 <!-- 追加ここまで -->
             <input type="hidden" id="count" value=<?php echo $event_num ?>>

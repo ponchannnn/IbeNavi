@@ -3,7 +3,7 @@ header("Content-type: application/json; charset=UTF-8");
 $count = $_POST["count"];
 $sort = getSortName($_POST["sort"]);
 $countV = strval($count);
-$max = 5;
+$max = 9;
 
 require_once(dirname(__FILE__).'/../GetDB.php');
 $uuid;
@@ -39,13 +39,13 @@ echo json_encode($rows);
 function getSortName ($sort) {
     switch ($sort) {
         case "run_date" :
-            return "runtime DESC";
+            return "runtime ASC";
             break;
         case "created_date" :
             return "created_at DESC";
             break;
         default :
-            return "runtime DESC";
+            return "runtime ASC";
     }
 };
 ?>
