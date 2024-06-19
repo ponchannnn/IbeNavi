@@ -1,24 +1,7 @@
 <?php
 require_once(dirname(__FILE__).'/../GetDB.php');
-$uuid;
 $dbh = (new GetDB())->getDbh();
 $event_num = 0;
-// キーワード検索
-if(!isset($_GET["q"])) {
-    $stmt = $dbh->prepare("SELECT eventid, eventname, category, runtime, location FROM events ORDER BY created_at DESC, eventid ASC LIMIT 5 OFFSET 0");
-    if($stmt) {
-        $stmt->execute();
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-} else {
-    $q = $_GET["q"];
-    $sql = "SELECT eventid, eventname, category, runtime, location FROM events WHERE eventname LIKE '%{$q}%' ORDER BY created_at DESC, eventid ASC LIMIT 5 OFFSET 0";
-    $stmt = $dbh->prepare($sql);
-    if($stmt) {
-        $stmt->execute();
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -49,13 +32,13 @@ if(!isset($_GET["q"])) {
                 </select>
             </div>
         </div>
-        <div class="event-container">
+        <div class="infinite-event-container">
             <div id="splash">
                 <div id="splash_text"></div>
             <!--/splash--></div>
             <div id="container">
                 <div id="infinite-content"></div>
-                 <!-- 無限スクロールで読み込む -->
+                <!-- 無限スクロールで読み込む -->
                 <!-- jQuery読み込み -->
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <script type="text/javascript" src="infScroll.js"></script>
@@ -65,6 +48,7 @@ if(!isset($_GET["q"])) {
                 <!-- 追加ここまで -->
             <!--/container--></div>
             <input type="hidden" id="count" value=<?php echo $event_num ?>>
+            <div id="loading"></div>
         </div>
     </div>
 </body>

@@ -44,7 +44,7 @@ $("#sort").on("change", () => {
         sort? null: sort = "run_date";
         let count = $("#count").val();
         // コンテンツ件数
-        $("#loading").append(`<div class="loading">読込中...</div>`);
+        $('#loading').css("display", "inline-block");
         // ajax処理
         $.post({
         type: "POST",
@@ -53,32 +53,29 @@ $("#sort").on("change", () => {
         data:{ count : count,
             sort : sort
         }})
-        .done(function(data){console.log(data);
-            $('#loading .loading').remove();
+        .done(function(data){
+            $('#loading').css("display", "none");
             // データがない場合終わる
             if (data.length == 1) {
-                if (count == 0) $(".event-container").append("<h2> イベントがありません </h2>");
+                if (count == 0) $(".infinite-content").append("<h2> イベントがありません </h2>");
                 count = -1;
             } else {
                 // コンテンツ生成(count排除)
                 for (let i = 0; i < data.length - 1; i++) {
                     $("#infinite-content").append(`
-                    <div class='loaded-contents'>
-                        <a href='event_contents.php?count=${data[data.length - 1]["count"]}}'></a>
-                        <div class="event-container">
-                            <div class="event">
-                                <a href="/event_detail/event_prof?eventid=${data[i]["eventid"]}"><h2>${data[i]["eventname"]}</h2></a>
-                                <p>開催日時: <span id="date-time">${data[i]["runtime"]}</span></p>
-                                <p>場所: <span id="location">${data[i]["location"]}</span></p>
-                                <p>カテゴリ: <span id="category">${data[i]["category"]}</span></p>
-                                <!-- 追加 -->
-                                <div class="like-switch">
-                                    <label class="switch">
-                                        <input type="checkbox">
-                                        <span class="like-slider"></span>
-                                    </label>
-                                </div>
-                            </div>`
+                        <div class="event">
+                            <a href="/event_detail/event_prof?eventid=${data[i]["eventid"]}"><h2>${data[i]["eventname"]}</h2></a>
+                            <p>開催日時: <span id="date-time">${data[i]["runtime"]}</span></p>
+                            <p>場所: <span id="location">${data[i]["location"]}</span></p>
+                            <p>カテゴリ: <span id="category">${data[i]["category"]}</span></p>
+                            <div class="event_img"><img src="/../header/blob.png" alt="img"></div>
+                            <div class="like-switch">
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="like-slider"></span>
+                                </label>
+                            </div>
+                        </div>`
                     )
                 }
                 count = parseInt(count) + data.length - 1;
@@ -96,7 +93,6 @@ $("#sort").on("change", () => {
         sort? null: sort = "run_date";
         let count = $("#count").val();
         // コンテンツ件数
-        $("#loading").append(`<div class="loading">読込中...</div>`);
         // ajax処理
         $.post({
         type: "POST",
@@ -117,7 +113,6 @@ $("#sort").on("change", () => {
                 for (let i = 0; i < data.length - 1; i++) {
                     $("#infinite-content").append(`
                     <div class='loaded-contents'>
-                        <a href='event_contents.php?count=${data[data.length - 1]["count"]}}'></a>
                         <div class="event-container">
                             <div class="event">
                                 <form  action="../event_form/update_event" method="GET">
