@@ -10,11 +10,11 @@ class IsLoggedIn extends GetDB {
 
     function __construct () {
         parent::__construct();
+        $this->dbh = parent::getDbh();
         if (isset($_SERVER["REQUEST_URI"])) $this->original_url = $_SERVER["REQUEST_URI"];
     }
 
     function getDbh () {
-        $this->check_logged_in();
         return $this->dbh;
     }
 
@@ -55,8 +55,6 @@ class IsLoggedIn extends GetDB {
             return header("Location: /../../login/login");
         }
         $this->logged_flag = true;
-        $uuid;
-        $this->dbh = parent::getDbh();
         $stmt = $this->dbh->prepare("SELECT id FROM sessions WHERE sessionid = :sessionid");
         if ($stmt) {
             $sid = $_COOKIE["PHPSESSID"];    // 参照渡しエラーのため
@@ -86,8 +84,6 @@ class IsLoggedIn extends GetDB {
             return false;
         }
         $this->logged_flag = true;
-        $uuid;
-        $this->dbh = parent::getDbh();
         $stmt = $this->dbh->prepare("SELECT id FROM sessions WHERE sessionid = :sessionid");
         if ($stmt) {
             $sid = $_COOKIE["PHPSESSID"];    // 参照渡しエラーのため

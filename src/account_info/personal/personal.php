@@ -1,8 +1,8 @@
 <?php
 require_once(dirname(__FILE__)."/../../IsLoggedIn.php");
-$is_logged = new IsLoggedIn();
-$dbh = $is_logged->getDbh();
-$uuid = $is_logged->getUuid();
+$logged = new IsLoggedIn();
+$dbh = $logged->getDbh();
+$uuid = $logged->getUuid();
 $stmt = $dbh->prepare("SELECT firstname, lastname, dateofbirth, postnumber, address, phonenumber FROM userprofile WHERE id = :uuid");
 if($stmt) {
     $stmt->bindParam(":uuid", $uuid);

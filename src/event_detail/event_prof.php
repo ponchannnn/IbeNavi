@@ -38,6 +38,7 @@ if($stmt) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>イベント情報</title>
+    <link rel="stylesheet" href="event-prof.css">
 </head>
 <body>
 <?php include("../header/header.php"); ?><div class="container"></div>
@@ -54,7 +55,7 @@ if($stmt) {
         <p>日時: <span id="date-time"><?php echo($datetime); ?></span></p>
         <p>場所: <span id="location"><?php echo($location); ?></span></p>
         <p><a href="/show_event/channel_event?channel_id=<?php echo($account_userid); ?>">投稿者: <span id="subscriber"><?php echo($username); ?></span></a>
-            <form action="/show_event/subscribe" method="get">
+            <form action="/subscribe" method="get">
                 <input type="hidden" name="id" value=<?php echo($account_userid); ?>>
                 <input type="submit" value="登録">
             </form>

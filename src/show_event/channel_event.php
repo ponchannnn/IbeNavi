@@ -1,6 +1,6 @@
 <?php
 if (!isset($_GET["channel_id"])) {
-    header("Location /show_event/show_event");
+    header("Location: /show_event/show_event");
     exit();
 }
 $channel_id = $_GET["channel_id"];

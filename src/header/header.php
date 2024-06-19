@@ -19,6 +19,7 @@ $is_logged_in = $logged->is_logged_in();
                     <a href="/../event_form/form">フォーム作成</a>
                     EOF;
                 }
+                echo "<a href='/../account_info/account_info'>アカウント設定</a>";
             }
             ?>
         </div>

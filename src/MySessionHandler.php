@@ -41,8 +41,8 @@
             date_default_timezone_set("UTC");
             $createdDate = date('Y-m-d H:i:s');
             $stmt = $this->dbh->prepare(
-                "INSERT INTO sessions (sessionId, id, sessionToken, createdDate)
-                VALUES (:sessionId, :uuid, :token, :cdate) ON CONFLICT ON CONSTRAINT sessions_pkey DO UPDATE SET id = :uuid, sessionToken = :token, createdDate = :cdate"
+                "INSERT INTO sessions (sessionId, id, sessionToken, created_at)
+                VALUES (:sessionId, :uuid, :token, :cdate) ON CONFLICT ON CONSTRAINT sessions_pkey DO UPDATE SET id = :uuid, sessionToken = :token, created_at = :cdate"
             );
             if ($stmt) {
                 $stmt->bindParam(':sessionId', $sessionId);
@@ -68,7 +68,7 @@
         }
     
         public function gc($max_lifetime) {  // ガーベージコレクタ (php.iniのgc_maxlifetime = 1440)
-            $stmt = $this->dbh->prepare("DELETE FROM sessions WHERE createdDate < :old");
+            $stmt = $this->dbh->prepare("DELETE FROM sessions WHERE created_at < :old");
             if ($stmt) {
                 date_default_timezone_set("UTC");
                 $old = date('Y-m-d H:i:s', time() - $max_lifetime);

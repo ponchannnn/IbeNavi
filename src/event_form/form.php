@@ -13,15 +13,10 @@ if (!$logged->isOrganizer()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>イベント投稿フォーム</title>
-    <style type="text/css">
-        #event-image-preview img {
-        width: 800px;
-        margin: 10px;
-        border: solid 1px silver;
-        }
-    </style>
+    <link rel="stylesheet" href="form.css">
 </head>
 <body>
+    <?php include("../header/header.php"); ?><div class="container"></div>
     <h1>イベント投稿フォーム</h1>
     <form action="submit_event" method="post">
         <div>

@@ -31,6 +31,19 @@ if($stmt) {
     $data .= ";";
 };
 
+$sql = "SELECT * FROM userprofile";
+$stmt = $dbh->prepare($sql);
+if($stmt) {
+    $stmt->execute();
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $data .= "INSERT INTO userprofile (id, firstname, lastname, dateofbirth, postnumber, address, phonenumber) VALUES ";
+    foreach ($rows as $row) {
+        $data .= "( '" . $row["id"] . "', '" . $row["firstname"] . "', '" . $row["lastname"] . "', '" . $row["dateofbirth"]. "', '" . $row["postnumber"] . "', '" . $row["address"] . "', '" . $row["phonenumber"] . "'), ";
+    };
+    $data = substr($data, 0, -2);
+    $data .= ";";
+};
+
 $sql = "SELECT * FROM userroles";
 $stmt = $dbh->prepare($sql);
 if($stmt) {
