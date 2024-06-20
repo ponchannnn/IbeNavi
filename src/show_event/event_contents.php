@@ -2,13 +2,14 @@
 header("Content-type: application/json; charset=UTF-8");
 $count = $_POST["count"];
 $sort = getSortName($_POST["sort"]);
-$active = isset($_POST["active"])? $_POST["active"]: "false";
 $countV = strval($count);
 $max = 9;
 
-require_once(dirname(__FILE__).'/../GetDB.php');
-$uuid;
-$db = new GetDB();
+$subbed_url = explode("/", $_SERVER['HTTP_REFERER']);
+$original_url = end($subbed_url);
+
+require_once(dirname(__FILE__).'/../IsLoggedIn.php');
+$db = new IsLoggedIn();
 $dbh = $db->getDbh();
 
 if (!isset($_POST["accountId"])) {
@@ -27,8 +28,9 @@ if (!isset($_POST["accountId"])) {
 }
 else {  // set accountid
     $uuid = $db->getUuidFromUserId($_POST["accountId"]);
-    if ($active == "true") $sql = "SELECT eventid, eventname, category, runtime, location, event_status FROM events WHERE accountId = '{$uuid}' AND event_status = 'active' ORDER BY {$sort}, eventid ASC LIMIT {$max} OFFSET {$countV}";
-    else if ($active == "false") $sql = "SELECT eventid, eventname, category, runtime, location, event_status FROM events WHERE accountId = '{$uuid}'AND event_status != 'deleted'  ORDER BY {$sort}, eventid ASC LIMIT {$max} OFFSET {$countV}";
+    if ($original_url == "my_event" && $db->is_logged_in() && $db->getUuid() == $uuid) $sql = "SELECT eventid, eventname, category, runtime, location, event_status FROM events WHERE accountId = '{$uuid}'AND event_status != 'deleted'  ORDER BY {$sort}, eventid ASC LIMIT {$max} OFFSET {$countV}";
+    else  $sql = "SELECT eventid, eventname, category, runtime, location, event_status FROM events WHERE accountId = '{$uuid}' AND event_status = 'active' ORDER BY {$sort}, eventid ASC LIMIT {$max} OFFSET {$countV}";
+
 }
 $stmt = $dbh->prepare($sql);
 if($stmt) {

@@ -101,7 +101,6 @@ $("#sort").on("change", () => {
         data:{ count : count,
             accountId : accountId,
             sort : sort,
-            active : "false"
         }})
         .done(function(data){
             $('#loading .loading').remove();
@@ -161,7 +160,6 @@ $("#sort").on("change", () => {
         data:{ count : count,
             accountId : accountId,
             sort : sort,
-            active : "true"
         }})
         .done(function(data){
             $('#loading .loading').remove();
