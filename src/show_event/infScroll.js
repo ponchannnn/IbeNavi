@@ -100,7 +100,8 @@ $("#sort").on("change", () => {
         url: "event_contents",
         data:{ count : count,
             accountId : accountId,
-            sort : sort
+            sort : sort,
+            active : "false"
         }})
         .done(function(data){
             $('#loading .loading').remove();
@@ -130,7 +131,67 @@ $("#sort").on("change", () => {
                                 <!-- 追加 -->
                                 <div class="like-switch">
                                     <label class="switch">
-                                        <input type="checkbox">
+                                        <input type="checkbox" ${data[i]["event_status"] == "hidden"? "checked" : ""}>
+                                        <span class="like-slider"></span>
+                                    </label>
+                                </div>
+                            </div>`
+                    )
+                }
+                count = parseInt(count) + data.length - 1;
+            }
+            // 取得件数を加算してセット
+            $("#count").val(count);
+            loadingFlg = false;
+        }).fail(function(e){
+            console.log(e);
+        })
+    }
+
+    function ajax_add_content_for_channel(accountId) {
+        let sort = $("#sort option:selected").val();
+        sort? null: sort = "run_date";
+        let count = $("#count").val();
+        // コンテンツ件数
+        // ajax処理
+        $.post({
+        type: "POST",
+        datatype: "json",
+        url: "event_contents",
+        data:{ count : count,
+            accountId : accountId,
+            sort : sort,
+            active : "true"
+        }})
+        .done(function(data){
+            $('#loading .loading').remove();
+            // データがない場合終わる
+            if (data.length == 1) {
+                if (count == 0) $(".event-container").append("<h2> イベントがありません </h2>");
+                count = -1;
+            } else {
+                // コンテンツ生成(count排除)
+                for (let i = 0; i < data.length - 1; i++) {
+                    $("#infinite-content").append(`
+                    <div class='loaded-contents'>
+                        <div class="event-container">
+                            <div class="event" name="${data[i]["eventid"]}">
+                                <form  action="../event_form/update_event" method="GET">
+                                    <input type="hidden" name="eventid" value="${data[i]["eventid"]}" />
+                                    <input type="submit" value="編集" />
+                                </form>
+                                <form  action="../event_form/delete_event" method="GET">
+                                    <input type="hidden" name="eventid" value="${data[i]["eventid"]}" />
+                                    <input type="submit" value="削除" />
+                                </form>
+                                <a href="/event_detail/event_prof?eventid=${data[i]["eventid"]}"><h2>${data[i]["eventname"]}</h2></a>
+                                <p>開催日時: <span id="date-time">${data[i]["runtime"]}</span></p>
+                                <p>場所: <span id="location">${data[i]["location"]}</span></p>
+                                <p>カテゴリ: <span id="category">${data[i]["category"]}</span></p>
+                                <!-- 追加 -->
+                                <div class="like-switch">
+                                    <label class="switch">
+                                        <input type="checkbox" >
                                         <span class="like-slider"></span>
                                     </label>
                                 </div>

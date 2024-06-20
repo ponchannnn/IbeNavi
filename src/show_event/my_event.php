@@ -4,7 +4,7 @@ $logged = new IsloggedIn();
 $dbh = $logged->getDbh();
 $uuid = $logged->getUuid();
 if (!$logged->isOrganizer()) {  
-    header("Location: /not_organizer_account");
+    echo $_COOKIE["PHPSESSID"];
     exit();
 };
 $accountid = $logged->getUserIdFromUuid($uuid);
