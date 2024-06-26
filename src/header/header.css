@@ -1,4 +1,4 @@
-.header {
+.sHeader {
     background-color: #333;
     color: #fff;
     padding: 10px 0;
@@ -10,35 +10,35 @@
     justify-content: space-between;
     transition: background-color 0.3s, padding 0.3s;
 }
-.header img {
+.sHeader img {
     margin-left: 20px;
     height: 40px;
     transition: height 0.3s;
 }
-.nav {
+.sNav {
     display: flex;
     align-items: center;
     margin-left: 20px;
 }
-.nav a {
+.sNav a {
     color: white;
     text-decoration: none;
     padding: 0 15px;
     font-size: 16px;
 }
-.nav a:hover {
+.sNav a:hover {
     text-decoration: underline;
 }
-.search-container {
+.sHeader-search-container {
     flex: 1;
     text-align: right;
 }
-.search-container form {
+.sHeader-search-container form {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
-.search-container input[type=text] {
+.sHeader-search-container input[type=text] {
     width: 60%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -46,7 +46,7 @@
     font-size: 16px;
     box-sizing: border-box;
 }
-.search-container input[type=submit] {
+.sHeader-search-container input[type=submit] {
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
@@ -56,7 +56,7 @@
     font-size: 16px;
     margin-left: 10px;
 }
-.search-container input[type=submit]:hover {
+.sHeader-search-container input[type=submit]:hover {
     background-color: #45a049;
 }
 
@@ -71,20 +71,20 @@ body {
     padding: 20px;
 }
 
-.header.scrolled {
+.sHeader.scrolled {
     background-color: rgb(113, 113, 113);
     padding: 5px 0;
 }
 
-.header.scrolled img {
+.sHeader.scrolled img {
     height: 30px;
 }
 
-.header a {
+.sHeader a {
     color: inherit;
     text-decoration: none;
 }
 
-.header a:visited{
+.sHeader a:visited{
     color: inherit;
 }

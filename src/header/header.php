@@ -8,9 +8,9 @@ $is_logged_in = $logged->is_logged_in();
 <link rel="stylesheet" href="/header/header.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/header/header.js"></script>
-<div class="header">
+<div class="sHeader">
         <a href="/show_event/show_event"><img src="/header/blob.png" alt="Logo"></a>
-        <div class="nav">
+        <div class="sNav">
             <?php
             if ($is_logged_in){ // ログイン中
                 if ($logged->isOrganizer()) {
@@ -23,7 +23,7 @@ $is_logged_in = $logged->is_logged_in();
             }
             ?>
         </div>
-        <div class="search-container">
+        <div class="sHeader-search-container">
             <form action="" method="GET">
                 <input type="text" placeholder="キーワードを入力">
                 <input type="submit" value="検索">
@@ -34,7 +34,7 @@ $is_logged_in = $logged->is_logged_in();
                     EOF;
                 } else {    // ログアウト中
                     echo <<< EOF
-                    <button><a href='/create_account/create_account'>サインイン</a></button>
+                    <button><a href='/create_account/create_account'>サインアップ</a></button>
                     <button><a href='/login/login'>ログイン</a></button>
                     EOF;
                 }

@@ -51,7 +51,8 @@ $("#sort").on("change", () => {
         datatype: "json",
         url: "event_contents",
         data:{ count : count,
-            sort : sort
+            sort : sort,
+            q : q
         }})
         .done(function(data){
             $('#loading').css("display", "none");
@@ -101,6 +102,7 @@ $("#sort").on("change", () => {
         data:{ count : count,
             accountId : accountId,
             sort : sort,
+            q : q
         }})
         .done(function(data){
             $('#loading .loading').remove();
@@ -160,6 +162,7 @@ $("#sort").on("change", () => {
         data:{ count : count,
             accountId : accountId,
             sort : sort,
+            q : q
         }})
         .done(function(data){
             $('#loading .loading').remove();

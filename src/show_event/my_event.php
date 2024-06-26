@@ -3,7 +3,7 @@ require_once(dirname(__FILE__).'/../IsLoggedIn.php');
 $logged = new IsloggedIn();
 $dbh = $logged->getDbh();
 $uuid = $logged->getUuid();
-if (!$logged->isOrganizer()) {  
+if (!$logged->isOrganizer()) {
     echo $_COOKIE["PHPSESSID"];
     exit();
 };
@@ -59,6 +59,7 @@ if(!isset($_GET["q"])) {
         <div class="event-container">
             <!-- 無限スクロールで読み込む -->
             <!-- jQuery読み込み -->
+            <script>const q = "<?php if(!empty($_GET["q"])) echo $_GET["q"]; else echo "null"; ?>";</script>
             <script type="text/javascript">accountId = "<?php echo $accountid; ?>"</script>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script type="text/javascript" src="infScroll.js"></script>

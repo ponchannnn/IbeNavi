@@ -20,7 +20,7 @@ $event_num = 0;
         </div>
         <div class="search-container">
             <form method="GET">
-                <input type="text" name="q" placeholder="キーワードを入力" value= <?php if(!empty($q)) echo $q; ?>>
+                <input type="text" name="q" placeholder="キーワードを入力" value= <?php if(!empty($_GET["q"])) echo $_GET["q"]; ?>>
                 <input type="submit" value="検索">
             </form>
             <div class="sort-container">
@@ -40,6 +40,7 @@ $event_num = 0;
                 <div id="infinite-content"></div>
                 <!-- 無限スクロールで読み込む -->
                 <!-- jQuery読み込み -->
+                <script>const q = "<?php if(!empty($_GET["q"])) echo $_GET["q"]; else echo "null"; ?>";</script>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <script type="text/javascript" src="infScroll.js"></script>
                 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
