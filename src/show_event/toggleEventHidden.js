@@ -1,6 +1,6 @@
 $('.event-container').on("change", "input[type='checkbox']", function () {
     eventId = $(this).parent().parent().parent().attr("name");
-    setFlag(eventId, $(this).is(":checked"));
+    setFlag(eventId, !$(this).is(":checked"));
 })
 
 function setFlag(eventId, flag) {

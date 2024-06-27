@@ -119,7 +119,7 @@ $("#sort").on("change", () => {
                             <div class="event" name="${data[i]["eventid"]}">
                                 <form  action="../event_form/update_event" method="GET">
                                     <input type="hidden" name="eventid" value="${data[i]["eventid"]}" />
-                                    <input type="submit" value="編集" />
+                                    <input id="edit-button" type="submit" value="編集" />
                                 </form>
                                 <form  action="../event_form/delete_event" method="GET">
                                     <input type="hidden" name="eventid" value="${data[i]["eventid"]}" />
@@ -131,10 +131,12 @@ $("#sort").on("change", () => {
                                 <p>カテゴリ: <span id="category">${data[i]["category"]}</span></p>
                                 <!-- 追加 -->
                                 <div class="like-switch">
+                                    <span>非表示</span>
                                     <label class="switch">
-                                        <input type="checkbox" ${data[i]["event_status"] == "hidden"? "checked" : ""}>
+                                        <input type="checkbox" ${data[i]["event_status"] == "hidden"? "" : "checked"}>
                                         <span class="like-slider"></span>
                                     </label>
+                                    <span>表示</span>
                                 </div>
                             </div>`
                     )

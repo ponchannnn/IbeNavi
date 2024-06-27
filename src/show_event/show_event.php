@@ -16,7 +16,7 @@ $event_num = 0;
     <?php include("../header/header.php"); ?>
     <div class="container">
         <div class="title-container">
-            <h1><a href="#">イベント検索</a></h1>
+            <h1>イベント検索</h1>
         </div>
         <div class="search-container">
             <form method="GET">

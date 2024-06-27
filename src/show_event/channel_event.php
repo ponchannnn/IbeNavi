@@ -30,7 +30,7 @@ $username = $logged->getUsernameFromUserId($channel_id);
     <?php include("../header/header.php"); ?><div class="container"></div>
     <div class="container">
         <div class="title-container">
-            <h1><a href="#"><?php echo $username ?>のイベント</a></h1>
+            <h1><?php echo $username ?>のイベント</h1>
             <?php if($logged->is_logged_in()) echo "<button><a href='/show_event/subscribe?id={$channel_id}'>チャンネル登録</a></button>" ?>
         </div>
         <div class="search-container">
@@ -50,6 +50,7 @@ $username = $logged->getUsernameFromUserId($channel_id);
         <div class="event-container">
             <!-- 無限スクロールで読み込む -->
             <!-- jQuery読み込み -->
+            <script>const q = "<?php if(!empty($_GET["q"])) echo $_GET["q"]; else echo "null"; ?>";</script>
             <script type="text/javascript">accountId = "<?php echo $channel_id; ?>"</script>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script type="text/javascript" src="infScroll.js"></script>

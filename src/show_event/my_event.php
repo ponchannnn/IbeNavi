@@ -40,7 +40,7 @@ if(!isset($_GET["q"])) {
     <?php include("../header/header.php"); ?>
     <div class="container">
         <div class="title-container">
-            <h1><a href="#">マイイベント</a></h1>
+            <h1>マイイベント</h1>
         </div>
         <div class="search-container">
             <form method="GET">

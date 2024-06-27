@@ -6,7 +6,31 @@ body {
     padding: 20px;
 }
 
-form {
+h1 {
+    position: relative;
+    color: #158b2b;
+    font-size: 30px;
+    padding: 10px 0;
+    text-align: center;
+    margin: 1.5em 0;
+}
+
+h1:before {
+content: "";
+position: absolute;
+top: -8px;
+left: 50%;
+width: 150px;
+height: 68px;
+border-radius: 50%;
+border: 5px solid #a6ddb0;
+border-left-color: transparent;
+border-right-color: transparent;
+-webkit-transform: translateX(-50%);
+transform: translateX(-50%);
+}
+
+#eventform {
     background-color: white;
     max-width: 600px;
     margin: 40px auto;
@@ -16,22 +40,22 @@ form {
     border-radius: 8px;
 }
 
-div {
+#eventform div {
     margin-bottom: 20px;
 }
 
-label {
+#eventform label {
     display: block;
     margin-bottom: 10px;
     font-size: 16px;
     color: #666;
 }
 
-input[type="text"],
-input[type="datetime-local"],
-input[type="file"],
-select,
-textarea {
+#eventform input[type="text"],
+#eventform input[type="datetime-local"],
+#eventform input[type="file"],
+#eventform select,
+#eventform textarea {
     width: 100%;
     padding: 8px 10px;
     margin-top: 5px;
@@ -41,16 +65,16 @@ textarea {
     transition: border-color 0.3s;
 }
 
-input[type="text"]:focus,
-input[type="datetime-locale"]:focus,
-input[type="file"]:focus,
-select:focus,
-textarea:focus {
+#eventform input[type="text"]:focus,
+#eventform input[type="datetime-locale"]:focus,
+#eventform input[type="file"]:focus,
+#eventform select:focus,
+#eventform textarea:focus {
     border-color: #0056b3;
     outline: none;
 }
 
-button {
+#eventform button {
     font-size: 16px;
     padding: 10px 20px;
     background-color: #0056b3;
@@ -61,7 +85,7 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover {
+#eventform button:hover {
     background-color: #004085;
 }
 

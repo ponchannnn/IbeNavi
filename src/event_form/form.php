@@ -18,7 +18,7 @@ if (!$logged->isOrganizer()) {
 <body>
     <?php include("../header/header.php"); ?><div class="container"></div>
     <h1>イベント投稿フォーム</h1>
-    <form action="submit_event" method="post">
+    <form  id="eventform" action="submit_event" method="post">
         <div>
             <label for="eventname">イベント名</label>
             <input type="text" id="eventname" name="eventname" required>
