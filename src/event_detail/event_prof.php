@@ -38,7 +38,7 @@ if($stmt) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>イベント情報</title>
-    <link rel="stylesheet" href="event-prof.css">
+    <link rel="stylesheet" href="event_prof.css">
 </head>
 <body>
 <?php include("../header/header.php"); ?><div class="container"></div>
